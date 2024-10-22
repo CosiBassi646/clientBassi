@@ -24,18 +24,36 @@ public class Main {
 
         do {
 
-            System.out.println("-------INDOVINA IL NUMERO---------");
-            System.out.println("scrivi il numero da indovinare");
+            System.out.println("\n" + " -------INDOVINA IL NUMERO---------");
+            System.out.println("scrivi il numero da indovinare: ");
             n = in.nextLine();
             out.writeBytes(n + "\n");
             risultatoOperazione = rispostaServer.readLine();
-            System.out.println("Risposta del server: " + risultatoOperazione + "\n");
+            if(risultatoOperazione.equals("<")){
+                System.out.println("numero troppo grande");
+            }else{
+                if (risultatoOperazione.equals(">")) {
+                    System.out.println("numero troppo piccolo");
+                }else{
+                    if(risultatoOperazione.equals(null)){
+                        System.out.println("errore nell'inserimento dei dati");
+                    }
+                }
+            }
+            //controllo se il numero esce dall'intervallo
+            if(!risultatoOperazione.equals(">") && !risultatoOperazione.equals("<") && !risultatoOperazione.equals("=")  ){
+                System.out.println(risultatoOperazione + "\n");
+            }
+
+ 
+            
         } while (!risultatoOperazione.equals("="));
         
         System.out.println("Complimenti hai vinto!!! \n");
         System.out.println("Numero di tentativi: ");
 
         nTentativi = rispostaServer.readLine();
+        System.out.println(nTentativi);
 
         s.close();
         in.close();
